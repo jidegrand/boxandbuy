@@ -1,4 +1,4 @@
-import { getProduct, getProducts } from '@/lib/prestashop';
+import { getProduct, getProducts } from '@/lib/prestashop/products';
 import { notFound } from 'next/navigation';
 
 // ISR: Regenerate every 5 minutes
