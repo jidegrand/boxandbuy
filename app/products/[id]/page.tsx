@@ -5,11 +5,19 @@ import { notFound } from 'next/navigation';
 export const revalidate = 300;
 
 export async function generateStaticParams() {
-  const products = await getProducts();
+  try {
+    const products = await getProducts();
 
-  return products.slice(0, 10).map((product) => ({
-    id: String(product.id)
-  }));
+    return products
+      .filter((product) => product.id)
+      .slice(0, 10)
+      .map((product) => ({
+        id: String(product.id)
+      }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
 }
 
 export default async function ProductPage({
