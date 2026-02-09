@@ -1,11 +1,17 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, Search, User, Menu } from 'lucide-react';
 import { useCartStore } from '@/lib/store/cart';
 
 export function Header() {
   const totalItems = useCartStore((state) => state.getTotalItems());
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="bg-gray-900 text-white">
@@ -54,7 +60,7 @@ export function Header() {
             <Link href="/cart" className="flex items-center gap-2 hover:text-orange-400">
               <div className="relative">
                 <ShoppingCart className="w-6 h-6" />
-                {totalItems > 0 && (
+                {mounted && totalItems > 0 && (
                   <span className="absolute -top-2 -right-2 bg-orange-400 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                     {totalItems}
                   </span>
