@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BoxandBuy - Modern E-Commerce Platform
 
-## Getting Started
+A headless e-commerce storefront built with Next.js 16, TypeScript, and integrated with PrestaShop backend.
 
-First, run the development server:
+## Features
+
+- **Product Catalog**: Real-time product listing from PrestaShop API
+- **Shopping Cart**: Persistent cart with Zustand state management
+- **Checkout Flow**: Complete checkout with shipping/billing forms
+- **Order Management**: Order placement and confirmation
+- **Responsive Design**: Amazon-style UI built with Tailwind CSS
+- **Image Integration**: Product images from PrestaShop
+- **TypeScript**: Full type safety throughout
+
+## Tech Stack
+
+- **Frontend**: Next.js 16 (App Router), React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **State Management**: Zustand with localStorage persistence
+- **Backend**: PrestaShop Web Services API (XML)
+- **Deployment**: Vercel
+- **Version Control**: Git + GitHub
+
+## Features Breakdown
+
+### Product Management
+- Product listing with images
+- Product detail pages with ISR (5-minute revalidation)
+- Star ratings and reviews
+- Price display with discounts
+- Stock status indicators
+
+### Shopping Experience
+- Add to cart functionality
+- Cart quantity management
+- Persistent cart across sessions
+- Real-time cart count updates
+- Order summary calculations
+
+### Checkout
+- Shipping information form
+- Billing address capture (with "same as shipping" option)
+- Form validation
+- Order review
+- Order confirmation page
+- Unique order ID generation
+
+### UI/UX
+- Amazon-inspired design
+- Responsive layout
+- Professional header/footer
+- Category cards
+- Hero banner
+- Smooth transitions
+
+## Live Demo
+
+**Production**: [https://boxandbuy.vercel.app](https://boxandbuy.vercel.app)
+
+## Local Development
 
 ```bash
+# Clone repository
+git clone https://github.com/jidegrand/boxandbuy.git
+cd boxandbuy
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+# Create .env.local with:
+# PRESTASHOP_URL=https://your-prestashop-url.com
+# PRESTASHOP_API_KEY=your-api-key
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+boxandbuy-storefront/
+├── app/                      # Next.js app directory
+│   ├── cart/                 # Shopping cart page
+│   ├── checkout/             # Checkout flow
+│   │   ├── actions.ts        # Server actions
+│   │   ├── page.tsx          # Checkout form
+│   │   └── success/          # Order confirmation
+│   ├── products/[id]/        # Product detail pages (ISR)
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Home page
+├── components/               # React components
+│   ├── layout/               # Header, Footer, HeroBanner, etc.
+│   └── products/             # ProductCard, ProductRow, ProductGrid
+├── lib/                      # Business logic
+│   ├── prestashop/           # API integration
+│   │   ├── client.ts         # Axios client + XML parser
+│   │   ├── products.ts       # Product fetching
+│   │   └── orders.ts         # Order creation
+│   └── store/                # State management
+│       └── cart.ts           # Cart store (Zustand)
+└── types/                    # TypeScript definitions
+    ├── product.ts
+    ├── cart.ts
+    └── checkout.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuration
 
-## Learn More
+### PrestaShop API Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. Enable Web Services in PrestaShop
+2. Create API key with permissions:
+   - products (GET)
+   - images (GET)
+   - orders (GET, POST)
+   - addresses (GET, POST)
+   - customers (GET, POST)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Required variables in `.env.local`:
 
-## Deploy on Vercel
+```
+PRESTASHOP_URL=https://your-store.com
+PRESTASHOP_API_KEY=your-api-key-here
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed automatically via Vercel:
+
+1. Push to GitHub main branch
+2. Vercel auto-deploys
+3. Environment variables configured in Vercel dashboard
+
+## Future Enhancements
+
+- [ ] Payment integration (Stripe/PayPal)
+- [ ] User authentication
+- [ ] Order history page
+- [ ] Product search functionality
+- [ ] Category filtering
+- [ ] Product reviews
+- [ ] Wishlist
+- [ ] Email notifications
+
+## Developer
+
+**Jide Grand**
+- GitHub: [@jidegrand](https://github.com/jidegrand)
+- Project: [BoxandBuy](https://github.com/jidegrand/boxandbuy)
+
+## License
+
+This project is open source and available under the MIT License.
