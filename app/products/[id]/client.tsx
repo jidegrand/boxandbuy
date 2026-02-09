@@ -33,8 +33,8 @@ export default function ProductDetailClient({ initialProduct }: ProductDetailCli
     <div className="min-h-screen bg-gray-50">
       {/* Breadcrumb */}
       <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="text-sm text-gray-600">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-4">
+          <div className="text-xs sm:text-sm text-gray-600">
             <Link href="/" className="hover:text-orange-600">Home</Link>
             <span className="mx-2">›</span>
             <Link href="/products" className="hover:text-orange-600">Products</Link>
@@ -45,8 +45,8 @@ export default function ProductDetailClient({ initialProduct }: ProductDetailCli
       </div>
 
       {/* Main Product Section */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {/* Left: Images */}
           <div className="lg:col-span-1">
             {/* Main Image */}
@@ -79,9 +79,9 @@ export default function ProductDetailClient({ initialProduct }: ProductDetailCli
 
           {/* Middle: Product Details */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg p-6 border">
+            <div className="bg-white rounded-lg p-4 sm:p-6 border">
               {/* Title */}
-              <h1 className="text-2xl font-bold text-gray-900 mb-3">{product.name}</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{product.name}</h1>
 
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6">
@@ -104,7 +104,7 @@ export default function ProductDetailClient({ initialProduct }: ProductDetailCli
 
               {/* Price */}
               <div className="mb-6 pb-6 border-b">
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                   ${parseFloat(product.price).toFixed(2)}
                 </div>
                 <p className="text-sm text-gray-600">
@@ -168,8 +168,8 @@ export default function ProductDetailClient({ initialProduct }: ProductDetailCli
           {/* Right: Additional Info */}
           <div className="lg:col-span-1 space-y-4">
             {/* About this item */}
-            <div className="bg-white rounded-lg p-6 border">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">About this item</h3>
+            <div className="bg-white rounded-lg p-4 sm:p-6 border">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">About this item</h3>
               <ul className="text-sm text-gray-600 space-y-3">
                 <li className="flex gap-3">
                   <span className="text-green-600">✓</span>
@@ -191,8 +191,8 @@ export default function ProductDetailClient({ initialProduct }: ProductDetailCli
             </div>
 
             {/* Product Details */}
-            <div className="bg-white rounded-lg p-6 border">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Product Details</h3>
+            <div className="bg-white rounded-lg p-4 sm:p-6 border">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Product Details</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Product ID:</span>

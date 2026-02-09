@@ -26,8 +26,8 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
   if (compact) {
     return (
       <Link href={`/products/${product.id}`}>
-        <div className="bg-white border rounded p-3 hover:shadow-lg transition cursor-pointer group">
-          <div className="relative h-32 mb-2">
+        <div className="bg-white border rounded p-2 sm:p-3 hover:shadow-lg transition cursor-pointer group">
+          <div className="relative h-24 sm:h-32 mb-2">
             {product.imageUrl ? (
               <img
                 src={product.imageUrl}
@@ -59,8 +59,8 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
 
   return (
     <Link href={`/products/${product.id}`}>
-      <div className="bg-white border rounded p-4 hover:shadow-lg transition-shadow cursor-pointer group">
-        <div className="relative h-48 mb-3 overflow-hidden">
+      <div className="bg-white border rounded p-2 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer group">
+        <div className="relative h-36 sm:h-48 mb-2 sm:mb-3 overflow-hidden">
           {product.imageUrl ? (
             <img
               src={product.imageUrl}
@@ -105,7 +105,7 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
 
           <div className="mb-3">
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-medium text-gray-900">
+              <span className="text-lg sm:text-2xl font-medium text-gray-900">
                 ${parseFloat(product.price).toFixed(2)}
               </span>
               {Math.random() > 0.5 && (

@@ -46,14 +46,14 @@ export function CategoryCards() {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
       {categories.map((category) => (
-        <div key={category.title} className="bg-white p-6 rounded">
-          <h3 className="font-bold text-xl mb-4 text-gray-900">{category.title}</h3>
-          <div className="bg-gray-100 h-40 rounded mb-4 flex items-center justify-center text-6xl">
+        <div key={category.title} className="bg-white p-3 sm:p-6 rounded">
+          <h3 className="font-bold text-sm sm:text-xl mb-2 sm:mb-4 text-gray-900">{category.title}</h3>
+          <div className="bg-gray-100 h-24 sm:h-40 rounded mb-2 sm:mb-4 flex items-center justify-center text-4xl sm:text-6xl">
             {category.image}
           </div>
-          <div className="space-y-2 text-sm mb-4 text-gray-700">
+          <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm mb-2 sm:mb-4 text-gray-700">
             {category.subcategories.map((sub) => (
               <Link
                 key={sub.name}
@@ -66,7 +66,7 @@ export function CategoryCards() {
           </div>
           <Link
             href={category.link}
-            className="text-blue-600 hover:text-orange-600 text-sm"
+            className="text-blue-600 hover:text-orange-600 text-xs sm:text-sm"
           >
             See more →
           </Link>

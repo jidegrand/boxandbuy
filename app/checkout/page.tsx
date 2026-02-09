@@ -118,7 +118,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-gray-100 py-8">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-lg p-8 text-center">
-            <h1 className="text-3xl font-bold mb-4 text-gray-900">Your cart is empty</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">Your cart is empty</h1>
             <p className="text-gray-600 mb-6">Add some products to checkout!</p>
             <a
               href="/"
@@ -137,10 +137,10 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-6 text-gray-900">Checkout</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900">Checkout</h1>
 
         {/* Progress Indicator */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
           <div className={`flex items-center gap-2 ${currentStep === 'info' ? 'text-orange-600 font-bold' : 'text-green-600'}`}>
             <span className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm ${currentStep === 'info' ? 'bg-orange-500' : 'bg-green-500'}`}>
               {currentStep === 'info' ? '1' : '\u2713'}
@@ -162,8 +162,8 @@ export default function CheckoutPage() {
               {/* Left Column - Forms */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Shipping Information */}
-                <div className="bg-white rounded-lg p-6">
-                  <h2 className="text-xl font-bold mb-4 text-gray-900">Shipping Information</h2>
+                <div className="bg-white rounded-lg p-4 sm:p-6">
+                  <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">Shipping Information</h2>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -270,9 +270,9 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-white rounded-lg p-6">
+                <div className="bg-white rounded-lg p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-bold text-gray-900">Billing Information</h2>
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900">Billing Information</h2>
                     <label className="flex items-center gap-2 text-gray-700">
                       <input
                         type="checkbox"
@@ -393,8 +393,8 @@ export default function CheckoutPage() {
 
               {/* Right Column - Order Summary */}
               <div className="lg:col-span-1">
-                <div className="bg-white rounded-lg p-6 sticky top-4">
-                  <h2 className="text-xl font-bold mb-4 text-gray-900">Order Summary</h2>
+                <div className="bg-white rounded-lg p-4 sm:p-6 sticky top-4">
+                  <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">Order Summary</h2>
 
                   <div className="space-y-3 mb-4">
                     {items.map((item) => (
@@ -447,8 +447,8 @@ export default function CheckoutPage() {
           /* Step 2: Payment */
           <div className="grid lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg p-6">
-                <h2 className="text-xl font-bold mb-4 text-gray-900">Payment Details</h2>
+              <div className="bg-white rounded-lg p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">Payment Details</h2>
 
                 {clientSecret && (
                   <Elements
@@ -482,8 +482,8 @@ export default function CheckoutPage() {
 
             {/* Right Column - Order Summary (repeated for payment step) */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg p-6 sticky top-4">
-                <h2 className="text-xl font-bold mb-4 text-gray-900">Order Summary</h2>
+              <div className="bg-white rounded-lg p-4 sm:p-6 sticky top-4">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">Order Summary</h2>
 
                 <div className="space-y-3 mb-4">
                   {items.map((item) => (

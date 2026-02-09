@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingCart, Search, User } from 'lucide-react';
+import { ShoppingCart, Search, User, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/lib/store/cart';
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
@@ -10,6 +10,7 @@ export function Header() {
   const totalItems = useCartStore((state) => state.getTotalItems());
   const { data: session, status } = useSession();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,8 +23,8 @@ export function Header() {
 
   return (
     <header className="bg-gray-900 text-white">
-      {/* Top bar */}
-      <div className="bg-gray-800 py-2 px-4 text-xs">
+      {/* Top bar - hidden on very small screens */}
+      <div className="bg-gray-800 py-2 px-4 text-xs hidden sm:block">
         <div className="container mx-auto flex justify-between items-center">
           <span>Deliver to Toronto</span>
           <div className="flex gap-4">
@@ -34,33 +35,44 @@ export function Header() {
       </div>
 
       {/* Main header */}
-      <div className="py-4 px-4">
-        <div className="container mx-auto flex items-center gap-6">
+      <div className="py-3 px-4">
+        <div className="container mx-auto flex items-center gap-3 sm:gap-6">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+            className="sm:hidden"
+          >
+            {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold">
+          <Link href="/" className="text-xl sm:text-2xl font-bold whitespace-nowrap">
             Box<span className="text-orange-400">&</span>Buy
           </Link>
 
-          {/* Search */}
-          <div className="flex-1 flex">
+          {/* Search - hidden on mobile, shown on sm+ */}
+          <div className="hidden sm:flex flex-1">
             <input
               type="text"
               placeholder="Search products..."
               className="flex-1 px-4 py-2 rounded-l bg-white text-gray-900"
             />
-            <button className="bg-orange-400 px-6 py-2 rounded-r hover:bg-orange-500">
+            <button className="bg-orange-400 px-4 sm:px-6 py-2 rounded-r hover:bg-orange-500">
               <Search className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Spacer on mobile */}
+          <div className="flex-1 sm:hidden" />
 
           {/* User Account */}
           <div className="relative">
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center gap-2 hover:border border-white px-3 py-2 rounded"
+              className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded hover:bg-gray-800"
             >
               <User className="w-5 h-5" />
-              <div className="text-left text-xs">
+              <div className="text-left text-xs hidden md:block">
                 <div className="text-gray-300">Hello, {session?.user?.name || 'Guest'}</div>
                 <div className="font-bold">Account</div>
               </div>
@@ -68,7 +80,7 @@ export function Header() {
 
             {/* Dropdown Menu */}
             {showUserMenu && (
-              <div className="absolute right-0 mt-2 w-64 bg-white text-gray-900 rounded shadow-lg z-50">
+              <div className="absolute right-0 mt-2 w-60 sm:w-64 bg-white text-gray-900 rounded shadow-lg z-50">
                 {session ? (
                   <div className="p-4">
                     <div className="pb-3 mb-3 border-b">
@@ -122,23 +134,35 @@ export function Header() {
           </div>
 
           {/* Cart */}
-          <Link href="/cart" className="flex items-center gap-2 hover:border border-white px-3 py-2 rounded relative">
+          <Link href="/cart" className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded relative hover:bg-gray-800">
             <ShoppingCart className="w-6 h-6" />
             {mounted && totalItems > 0 && (
               <span className="absolute -top-1 -right-1 bg-orange-400 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {totalItems}
               </span>
             )}
-            <span className="font-bold">Cart</span>
+            <span className="font-bold hidden sm:inline">Cart</span>
           </Link>
+        </div>
+
+        {/* Mobile search bar */}
+        <div className="sm:hidden mt-3 flex">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="flex-1 px-4 py-2 rounded-l bg-white text-gray-900 text-sm"
+          />
+          <button className="bg-orange-400 px-4 py-2 rounded-r hover:bg-orange-500">
+            <Search className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav className="bg-gray-700 py-2 px-4">
-        <div className="container mx-auto flex gap-6 text-sm">
+      {/* Navigation - horizontal scroll on mobile */}
+      <nav className="bg-gray-700 py-2 px-4 overflow-x-auto">
+        <div className="container mx-auto flex gap-4 sm:gap-6 text-sm whitespace-nowrap">
           <button className="hover:text-orange-400 flex items-center gap-1">
-            ☰ All Categories
+            ☰ All
           </button>
           <Link href="#" className="hover:text-orange-400">Electronics</Link>
           <Link href="#" className="hover:text-orange-400">Computers</Link>
@@ -146,6 +170,21 @@ export function Header() {
           <Link href="#" className="hover:text-orange-400 text-orange-400 font-bold">Today&apos;s Deals</Link>
         </div>
       </nav>
+
+      {/* Mobile menu overlay */}
+      {showMobileMenu && (
+        <div className="sm:hidden bg-gray-800 px-4 py-4 space-y-3">
+          <Link href="/" className="block py-2 hover:text-orange-400" onClick={() => setShowMobileMenu(false)}>Home</Link>
+          <Link href="/account" className="block py-2 hover:text-orange-400" onClick={() => setShowMobileMenu(false)}>My Account</Link>
+          <Link href="/orders" className="block py-2 hover:text-orange-400" onClick={() => setShowMobileMenu(false)}>My Orders</Link>
+          <Link href="/cart" className="block py-2 hover:text-orange-400" onClick={() => setShowMobileMenu(false)}>Cart</Link>
+          {session ? (
+            <button onClick={handleSignOut} className="block py-2 text-red-400">Sign Out</button>
+          ) : (
+            <Link href="/auth/login" className="block py-2 text-orange-400 font-semibold" onClick={() => setShowMobileMenu(false)}>Sign In</Link>
+          )}
+        </div>
+      )}
     </header>
   );
 }
