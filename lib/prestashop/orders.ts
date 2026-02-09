@@ -17,9 +17,9 @@ export async function createOrder(
           orderId: orderId,
           total: orderData.total,
           status: orderData.status,
-          items: orderData.items,
-          shipping: orderData.shipping,
-          billing: orderData.billing,
+          items: orderData.items as any,
+          shipping: orderData.shipping as any,
+          billing: orderData.billing as any,
         },
       });
     }
