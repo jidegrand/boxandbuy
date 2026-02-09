@@ -3,6 +3,6 @@
 import { createOrder } from '@/lib/prestashop/orders';
 import { Order } from '@/types/checkout';
 
-export async function placeOrder(orderData: Order) {
-  return await createOrder(orderData);
+export async function placeOrder(orderData: Order, userId?: string) {
+  return await createOrder(orderData, userId);
 }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCartStore } from '@/lib/store/cart';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { placeOrder } from './actions';
 import { ShippingAddress, BillingAddress } from '@/types/checkout';
 import { Elements } from '@stripe/react-stripe-js';
@@ -11,6 +12,7 @@ import { PaymentForm } from '@/components/checkout/PaymentForm';
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { data: session } = useSession();
   const { items, getTotalPrice, clearCart } = useCartStore();
   const [isProcessing, setIsProcessing] = useState(false);
   const [sameAsShipping, setSameAsShipping] = useState(true);
@@ -73,7 +75,7 @@ export default function CheckoutPage() {
         billing: billingAddress,
       };
 
-      const result = await placeOrder(orderData);
+      const result = await placeOrder(orderData, session?.user?.id);
 
       if (result.success) {
         setOrderId(result.orderId || null);
