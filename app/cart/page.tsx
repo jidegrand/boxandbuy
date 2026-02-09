@@ -13,7 +13,7 @@ export default function CartPage() {
       <div className="min-h-screen bg-gray-100 py-8">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-lg p-8 text-center">
-            <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
+            <h1 className="text-3xl font-bold mb-4 text-gray-900">Your Cart is Empty</h1>
             <p className="text-gray-600 mb-6">Add some products to get started!</p>
             <Link
               href="/"
@@ -30,7 +30,7 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">Shopping Cart</h1>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Cart Items */}
@@ -54,7 +54,7 @@ export default function CartPage() {
 
                 {/* Product Info */}
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-2">{item.product.name}</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-gray-900">{item.product.name}</h3>
                   <p className="text-sm text-gray-600 mb-2">Ref: {item.product.reference}</p>
                   <p className="text-green-700 text-sm mb-4">In Stock</p>
 
@@ -67,7 +67,7 @@ export default function CartPage() {
                       >
                         <Minus className="w-4 h-4" />
                       </button>
-                      <span className="px-4 py-2 border-x">{item.quantity}</span>
+                      <span className="px-4 py-2 border-x text-gray-900">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                         className="p-2 hover:bg-gray-100"
@@ -88,7 +88,7 @@ export default function CartPage() {
 
                 {/* Price */}
                 <div className="text-right">
-                  <p className="text-2xl font-bold">
+                  <p className="text-2xl font-bold text-gray-900">
                     ${(parseFloat(item.product.price) * item.quantity).toFixed(2)}
                   </p>
                   <p className="text-sm text-gray-600">
@@ -102,14 +102,14 @@ export default function CartPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-6 sticky top-4">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-bold mb-4 text-gray-900">Order Summary</h2>
 
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">
                     Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} items)
                   </span>
-                  <span className="font-semibold">${totalPrice.toFixed(2)}</span>
+                  <span className="font-semibold text-gray-900">${totalPrice.toFixed(2)}</span>
                 </div>
 
                 <div className="flex justify-between">
@@ -117,15 +117,18 @@ export default function CartPage() {
                   <span className="font-semibold text-green-600">FREE</span>
                 </div>
 
-                <div className="border-t pt-3 flex justify-between text-lg font-bold">
+                <div className="border-t pt-3 flex justify-between text-lg font-bold text-gray-900">
                   <span>Total</span>
                   <span className="text-orange-600">${totalPrice.toFixed(2)}</span>
                 </div>
               </div>
 
-              <button className="w-full bg-orange-400 hover:bg-orange-500 text-white py-3 rounded font-semibold mb-3">
+              <Link
+                href="/checkout"
+                className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-3 rounded font-semibold mb-3 text-center"
+              >
                 Proceed to Checkout
-              </button>
+              </Link>
 
               <Link
                 href="/"

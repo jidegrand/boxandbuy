@@ -1,11 +1,11 @@
 export function Sidebar() {
   return (
-    <aside className="w-64 bg-white border-r p-4">
-      <h3 className="font-bold text-lg mb-4">Filters</h3>
+    <aside className="w-64 bg-white border-r p-4 text-gray-700">
+      <h3 className="font-bold text-lg mb-4 text-gray-900">Filters</h3>
 
       {/* Price filter */}
       <div className="mb-6">
-        <h4 className="font-semibold mb-2">Price</h4>
+        <h4 className="font-semibold mb-2 text-gray-900">Price</h4>
         <div className="space-y-2 text-sm">
           <label className="flex items-center gap-2 cursor-pointer hover:text-orange-600">
             <input type="checkbox" className="rounded" />
@@ -28,7 +28,7 @@ export function Sidebar() {
 
       {/* Category filter */}
       <div className="mb-6">
-        <h4 className="font-semibold mb-2">Category</h4>
+        <h4 className="font-semibold mb-2 text-gray-900">Category</h4>
         <div className="space-y-2 text-sm">
           <label className="flex items-center gap-2 cursor-pointer hover:text-orange-600">
             <input type="checkbox" className="rounded" />
@@ -47,7 +47,7 @@ export function Sidebar() {
 
       {/* Prime filter */}
       <div className="mb-6">
-        <h4 className="font-semibold mb-2">Shipping</h4>
+        <h4 className="font-semibold mb-2 text-gray-900">Shipping</h4>
         <label className="flex items-center gap-2 cursor-pointer hover:text-orange-600 text-sm">
           <input type="checkbox" className="rounded" />
           <span className="text-blue-600 font-bold">prime</span> FREE Delivery
@@ -56,7 +56,7 @@ export function Sidebar() {
 
       {/* Rating filter */}
       <div className="mb-6">
-        <h4 className="font-semibold mb-2">Customer Review</h4>
+        <h4 className="font-semibold mb-2 text-gray-900">Customer Review</h4>
         <div className="space-y-2 text-sm">
           {[4, 3, 2, 1].map(stars => (
             <button key={stars} className="flex items-center gap-2 hover:text-orange-600">

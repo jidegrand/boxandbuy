@@ -58,7 +58,7 @@ export default async function ProductPage({
 
           {/* Product Info */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
+            <h2 className="text-3xl font-bold mb-4 text-gray-900">{product.name}</h2>
 
             <div className="mb-6">
               <p className="text-4xl font-bold text-blue-600">${parseFloat(product.price).toFixed(2)}</p>
@@ -72,7 +72,7 @@ export default async function ProductPage({
 
             {/* Additional Info */}
             <div className="bg-gray-50 p-4 rounded">
-              <h3 className="font-bold mb-2">Product Details</h3>
+              <h3 className="font-bold mb-2 text-gray-900">Product Details</h3>
               <ul className="text-sm text-gray-600 space-y-1">
                 <li>
                   <strong>ID:</strong> {product.id}
