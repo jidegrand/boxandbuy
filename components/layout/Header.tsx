@@ -117,6 +117,15 @@ export function Header() {
                     >
                       My Orders
                     </Link>
+                    {session.user.role === 'admin' && (
+                      <Link
+                        href="/admin"
+                        className="block py-2 px-3 hover:bg-gray-100 rounded text-orange-600 font-semibold"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
                     <button
                       onClick={handleSignOut}
                       className="w-full text-left py-2 px-3 hover:bg-gray-100 rounded text-red-600"
