@@ -5,6 +5,7 @@ export interface Product {
   reference: string;
   id_default_image: string;
   imageUrl: string | null;
+  category?: string;
 }
 
 export interface ProductListResponse {

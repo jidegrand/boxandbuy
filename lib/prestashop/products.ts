@@ -1,6 +1,24 @@
 import { api, parseXML, extractProductName, buildImageUrl } from './client';
 import { Product } from '@/types/product';
 
+// Map PrestaShop category IDs to readable names
+const CATEGORY_MAP: Record<string, string> = {
+  '1': 'Home',
+  '2': 'Electronics',
+  '3': 'Computers',
+  '4': 'Home & Kitchen',
+  '5': 'Gaming',
+  '6': 'Fashion',
+  '7': 'Sports',
+  '8': 'Books',
+};
+
+function getCategoryName(categoryId: any): string {
+  if (!categoryId) return 'Electronics';
+  const id = typeof categoryId === 'object' && categoryId._ ? categoryId._ : String(categoryId);
+  return CATEGORY_MAP[id] || 'Electronics';
+}
+
 export async function getProducts(limit: number = 10): Promise<Product[]> {
   try {
     console.log('=== FETCHING PRODUCTS ===');
@@ -23,7 +41,7 @@ export async function getProducts(limit: number = 10): Promise<Product[]> {
     // Step 2: Fetch details for each product
     const products: Product[] = [];
 
-    for (const ref of productRefs.slice(0, 5)) {
+    for (const ref of productRefs) {
       try {
         const product = await getProduct(ref.id);
         if (product) {
@@ -57,7 +75,8 @@ export async function getProduct(id: string): Promise<Product | null> {
       price: product.price || '0',
       reference: product.reference || '',
       id_default_image: product.id_default_image || '',
-      imageUrl: buildImageUrl(product.id, product.id_default_image)
+      imageUrl: buildImageUrl(product.id, product.id_default_image),
+      category: getCategoryName(product.id_category_default),
     };
 
   } catch (error) {

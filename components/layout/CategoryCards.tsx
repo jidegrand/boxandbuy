@@ -5,42 +5,42 @@ export function CategoryCards() {
     {
       title: 'Gaming accessories',
       image: '🎮',
-      link: '/gaming',
+      link: '/search?category=Gaming',
       subcategories: [
-        { name: 'Headsets', link: '/gaming/headsets' },
-        { name: 'Keyboards', link: '/gaming/keyboards' },
-        { name: 'Computer mice', link: '/gaming/mice' },
-        { name: 'Chairs', link: '/gaming/chairs' }
+        { name: 'Headsets', link: '/search?q=headset&category=Gaming' },
+        { name: 'Keyboards', link: '/search?q=keyboard&category=Gaming' },
+        { name: 'Computer mice', link: '/search?q=mouse&category=Gaming' },
+        { name: 'Chairs', link: '/search?q=chair&category=Gaming' }
       ]
     },
     {
       title: 'Shop Laptops & Tablets',
       image: '💻',
-      link: '/computers',
+      link: '/search?category=Computers',
       subcategories: [
-        { name: 'Laptops', link: '/computers/laptops' },
-        { name: 'Tablets', link: '/computers/tablets' },
-        { name: 'Accessories', link: '/computers/accessories' }
+        { name: 'Laptops', link: '/search?q=laptop&category=Computers' },
+        { name: 'Tablets', link: '/search?q=tablet&category=Computers' },
+        { name: 'Accessories', link: '/search?q=accessories&category=Computers' }
       ]
     },
     {
       title: 'Electronics',
       image: '📱',
-      link: '/electronics',
+      link: '/search?category=Electronics',
       subcategories: [
-        { name: 'Smartphones', link: '/electronics/phones' },
-        { name: 'Headphones', link: '/electronics/headphones' },
-        { name: 'Cameras', link: '/electronics/cameras' }
+        { name: 'Smartphones', link: '/search?q=phone&category=Electronics' },
+        { name: 'Headphones', link: '/search?q=headphones&category=Electronics' },
+        { name: 'Cameras', link: '/search?q=camera&category=Electronics' }
       ]
     },
     {
       title: 'Fashion',
       image: '👕',
-      link: '/fashion',
+      link: '/search?category=Fashion',
       subcategories: [
-        { name: 'Dresses', link: '/fashion/dresses' },
-        { name: 'Shoes', link: '/fashion/shoes' },
-        { name: 'Jewelry', link: '/fashion/jewelry' }
+        { name: 'Dresses', link: '/search?q=dress&category=Fashion' },
+        { name: 'Shoes', link: '/search?q=shoes&category=Fashion' },
+        { name: 'Jewelry', link: '/search?q=jewelry&category=Fashion' }
       ]
     }
   ];

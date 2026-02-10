@@ -5,17 +5,31 @@ import { ShoppingCart, Search, User, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/lib/store/cart';
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function Header() {
   const totalItems = useCartStore((state) => state.getTotalItems());
   const { data: session, status } = useSession();
+  const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (q) {
+      router.push(`/search?q=${encodeURIComponent(q)}`);
+      setSearchQuery('');
+    } else {
+      router.push('/search');
+    }
+  };
 
   const handleSignOut = async () => {
     await signOut({ redirect: true, callbackUrl: '/' });
@@ -51,16 +65,18 @@ export function Header() {
           </Link>
 
           {/* Search - hidden on mobile, shown on sm+ */}
-          <div className="hidden sm:flex flex-1">
+          <form onSubmit={handleSearch} className="hidden sm:flex flex-1">
             <input
               type="text"
               placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 px-4 py-2 rounded-l bg-white text-gray-900"
             />
-            <button className="bg-orange-400 px-4 sm:px-6 py-2 rounded-r hover:bg-orange-500">
+            <button type="submit" className="bg-orange-400 px-4 sm:px-6 py-2 rounded-r hover:bg-orange-500">
               <Search className="w-5 h-5" />
             </button>
-          </div>
+          </form>
 
           {/* Spacer on mobile */}
           <div className="flex-1 sm:hidden" />
@@ -146,28 +162,30 @@ export function Header() {
         </div>
 
         {/* Mobile search bar */}
-        <div className="sm:hidden mt-3 flex">
+        <form onSubmit={handleSearch} className="sm:hidden mt-3 flex">
           <input
             type="text"
             placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 px-4 py-2 rounded-l bg-white text-gray-900 text-sm"
           />
-          <button className="bg-orange-400 px-4 py-2 rounded-r hover:bg-orange-500">
+          <button type="submit" className="bg-orange-400 px-4 py-2 rounded-r hover:bg-orange-500">
             <Search className="w-4 h-4" />
           </button>
-        </div>
+        </form>
       </div>
 
       {/* Navigation - horizontal scroll on mobile */}
       <nav className="bg-gray-700 py-2 px-4 overflow-x-auto">
         <div className="container mx-auto flex gap-4 sm:gap-6 text-sm whitespace-nowrap">
-          <button className="hover:text-orange-400 flex items-center gap-1">
+          <Link href="/search" className="hover:text-orange-400 flex items-center gap-1">
             ☰ All
-          </button>
-          <Link href="#" className="hover:text-orange-400">Electronics</Link>
-          <Link href="#" className="hover:text-orange-400">Computers</Link>
-          <Link href="#" className="hover:text-orange-400">Home & Kitchen</Link>
-          <Link href="#" className="hover:text-orange-400 text-orange-400 font-bold">Today&apos;s Deals</Link>
+          </Link>
+          <Link href="/search?category=Electronics" className="hover:text-orange-400">Electronics</Link>
+          <Link href="/search?category=Computers" className="hover:text-orange-400">Computers</Link>
+          <Link href="/search?category=Home+%26+Kitchen" className="hover:text-orange-400">Home & Kitchen</Link>
+          <Link href="/search?sort=price-asc" className="hover:text-orange-400 text-orange-400 font-bold">Today&apos;s Deals</Link>
         </div>
       </nav>
 
